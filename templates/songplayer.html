@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Reprodutor de Música</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='songplayer.css') }}">
+</head>
+<body>
+    <h1>Minhas Músicas</h1>
+
+    <hr>
+
+    <audio id="player" controls></audio>
+
+    <hr>
+
+    <h3>Lista de Faixas:</h3>
+    <ul>
+        {% for musica in musicas %}
+        <li><a href="#" onclick="tocarMusica('{{ musica }}')">{{ musica }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        const player = document.getElementById('player');
+
+        function tocarMusica(nome_arquivo) {
+            player.src = `/musicas/${nome_arquivo}`;
+            player.play();
+        }
+    </script>
+</body>
+</html>
